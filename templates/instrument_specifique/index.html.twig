@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}InstrumentSpecifique index{% endblock %}
+
+{% block body %}
+    <h1>InstrumentSpecifique index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>poste</th>
+                <th>section</th>
+                <th>marque</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for instrument_specifique in instrument_specifiques %}
+            <tr>
+                <td>{{ instrument_specifique.id }}</td>
+                 <td>{{ instrument_specifique.getPoste().poste }}</td>
+                  <td>{{ instrument_specifique.Poste.getSection().section }}</td>
+                   <td>{{ instrument_specifique.getMarque().marque }}</td>
+                <td>
+                    <a href="{{ path('instrument_specifique_show', {'id': instrument_specifique.id}) }}">show</a>
+                    <a href="{{ path('instrument_specifique_edit', {'id': instrument_specifique.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="2">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('instrument_specifique_new') }}">Create new</a>
+{% endblock %}
